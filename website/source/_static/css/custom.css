@@ -1,0 +1,12 @@
+/* #insegel-container {
+    background-image: url('/_static/header_building.svg');
+    border: 3px black solid;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: top;
+} */
+
+#main-content-container::before {
+    content:'';
+    background-image: background-image: url('/_static/header_building.svg');
+}

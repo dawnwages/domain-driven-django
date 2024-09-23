@@ -3,7 +3,7 @@ Introduction to Domain-Driven Design
 
 If you are new to **Domain-Driven Design** (DDD) and interested in going to the definitive works, I recommend checking out Eric Evan's Domain-Driven Design: Tackling Complexity in the Heart of Software. In 2024, you can find dozens of Domain-Driven [subject] books, but none yet on it's integration with Django. 
 
-Domain-Driven design (DDD), is a software artchitecture approach that prioritizes the rich expertise of domain by abstracting away patterns and definine layers and entry points to our software system. The technical nuances that are not likely intersting to you stakeholders are decoupled from the business logic and can be refactored independently. 
+Domain-Driven design (DDD), is a software artchitecture approach that prioritizes the rich expertise of domain by abstracting away patterns and defining layers and entry points to our software system. The technical nuances that are not likely intersting to your stakeholders are decoupled from the business logic and can be refactored independently. 
 
 *But how do we do that?*
 

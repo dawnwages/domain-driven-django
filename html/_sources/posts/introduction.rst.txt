@@ -1,2 +1,102 @@
-Introduction to Domain Driven Design
+Introduction to Domain-Driven Design
 ------------------------------------
+
+If you are new to **Domain-Driven Design** (DDD) and interested in going to the definitive works, I recommend checking out Eric Evan's Domain-Driven Design: Tackling Complexity in the Heart of Software. In 2024, you can find dozens of Domain-Driven [subject] books, but none yet on it's integration with Django. 
+
+Domain-Driven design (DDD), is a software artchitecture approach that prioritizes the rich expertise of domain by abstracting away patterns and definine layers and entry points to our software system. The technical nuances that are not likely intersting to you stakeholders are decoupled from the business logic and can be refactored independently. 
+
+*But how do we do that?*
+
+Practical tips await, but let's get into the nuts and bolts of what exactly is *Domain-Driven Design*.
+
+Create a shared language
+========================
+
+Usually in the `discovery` phase of a project, as the idea to use software to solve a problem comes to mind, the decision-makers in the room are imaging the users who are going to engage with this code, the actions it will perform and what byproducts may be output. These considerations among others are going to be informed in the `system requirements`. *Ubiquitous Language* as a term in DDD, is a strategy used in the early phases of designing your architecture, and will likely continue iteratively as new features are added, to create shared vocabulary. These words and their operational definition will make it into the code.
+
+Imagine, you are leading a team to build a space station, which will need software to drive it's functionality and you're doing this in Python and Django. As we are identifying our shared language for all of the many activities that are going to happen on our bustling, intergalactic station in the stars, aided by our code, we will first categorize our various domains. 
+
+.. admonition:: How do you define a domain?
+
+   A domain is usually an app-level, self-contained discipline. It is a system that can work on its own with features supporting its function. It will go from the top layer, user interface, contain domain knowledge and have persistent data. Inside a Django project, it is usually an `app`.
+
+We'll want a domain for environment systems, to keep it no more than 26.7 degrees celcius. Other life support functions may regulate air quality, humidity perfect for human life, perhaps ambient noise and environment checks on a cadence, checks perhaps as new vessels dock or leave, a system to debug environmental controls and override defaults. 
+
+How about another domain, we are building a complex software system here. Let's say this science fiction space station also has a notification system. One for the command room, where the professionals in charge monitor systems as well as one to alert the rest of the people on the station. This will be likely event-driven architecture, sending what we on earth call push notifications, but there's opportunity for pull notifications as well. We would need to address the many activities that may need notification like fuel, power, authorization and access points, the environment system described above. All these activities will need and interface to override or dismiss, as well as an interface for end users to recieve the notification.
+
+A space station would have many more domains related to it, but we can stop at these two for now to illustrate how we'd break up and approach these in architecture decisions based off of the patterns of DDD. 
+
+Each of the two domains described above, along with others can be imagined in an architecture diagram as vertical boxes covering the domain. Another veritcal box is the maintenance of the user interface, which will need its own domain expertise, strategic and tactical design considerations. I also keep in my diagram, what is common in building systems a vertical for legacy applications, as in monolithic architecture we're evolving away from in software, we'll still have to account for it in our architecture plans. Horizontally across these domain verticals is an interface layer that interacts with each of these domains. We'll also have horizontally underneath each of the verticals the interface with the databases.
+
+In each of these domain verticals, we have the domain knowledge for your code.
+
+
+Where does domain knowledge go in my code?
+==========================================
+
+Domain-Driven Design, uses the term *model* is very similar to the way Django uses the term. The model in Django represents as the The Django Project documentation describes a "single, definitive source of information about your data" where the fields and behaviors about your data live. The definition differs when we recognize that Django models are also many times one-to-one tables in your database, while in DDD a model is a concept that includes *entity*, *value object* and *aggregates*. 
+
+An *entity* is an identity that can exist on its own and is mutable. For example let's say our environmental system for our space station has a list of particles expected to be in the air at any given time, from dust to viruses and their scientific names. These are named entities and the changing of the entities name does not change that there is an entity. 
+
+In contrast, a *value object* is immutable and has no value outside of it's dependance on entity types. 
+
+There are three value types: 
+
+* Basic Value Type: Primitives
+* Composite Value Type: Joining multiple values together
+* Collection Value Type: A group of values
+
+Applying the value object to our environmental controls domain, we could see a *basic value type* as the number of air particulates we've noticed on board the ship. A composite value type could be the unique identifier we have for a category of particulates perhaps they're identified as `Delta 4 green` as they are all from the Delta quadrant, maintain 4 isotopes and are safe for the humans on the station; the key is that we combined several values together to make it useful for the domain experts to use. On earth a common composit value is an address. A *collection value* could be an array, list or map of objects. A map of the air particulates with a score on their harm level would be very handy on the space station and also represent a collection value in this domain.
+
+In these examples, the model is also defining an event or several events that lead to the change in the environmental quality on the space station. When these models are interacting together, it will create a picture of the status of your environment and are bound together. Instead of the Chief Miles O'Brien accessing each individual offending particulate in the air, as they move independently, he may press one button to flush an area of the station and increase filtration. At any one moment on the station, we have aggregate models come together to, in this case, give us the status of our life support environment and become the *root entity*. Now O'Brien is able to check against the chanes in the aggregate and its consistency. 
+
+What goes in each domain?
+=========================
+
+At the top of the list we have what is the most important parts of expert collaboration and then we get further into the weeds of technical implementation.
+
+* Services
+* Factories
+* ORM
+* URLs
+* Integration tests
+* Schema
+* Requirements
+
+Outside the domain, usually when drawn I draw it at the top, we have the interface for each of the domains to create an abstraction for the user interface. At the bottom of a diagram I'll have horizontally across all of the vertical domains is the interface with the database. Outside of these domains, I also have what ends up usually in my `common` directory of my Django code with common commands, facade, middleware and telemetry. 
+
+Each of these concepts will be explored further down the road. 
+
+Collaboration with experts
+===========================
+
+A lot of the concepts of Domain-Driven Design since 2003, have become second nature to the way frameworks and teams working with domain experts build complex software solutions. DDD put a name to concepts that have been practiced the proceeding decades and concepts have evolved since its publishing to connect to other patterns like object-oriented programming patterns, microservices, event-driven architecture, etc.
+
+The key in what makes DDD unique is that it emphasizes the co-creating of a unique body of knowledge from experts and puts the onus on the technical expert not to just translate technical requirements to non-technical experts, but to refer to the domain experts as the most important source of truth and translate domain knowledge to the technical requirements. This flip of importance creates space for software that suits actual behaviors, real-world needs, meet cultural norms and regulations. 
+
+This is my favorite part of software consulting: Discovery. There are many ways to conduct discovery meetings, interviews, personas and case studies. These tools exist one layer outside of Domain-Driven Design, where we start translating these requirements into our code.
+
+Thanks to model-driven and domain emphasized techniques, we have a formulaic approach to approaching security, tranactions, logging, middleware as it falls in an out of the scope of domain knowledge, while having the focus on translating the domain layer. 
+
+
+*Please contact me at `dawn.wages@gmail.com<mailto:dawn.wages@gmail.com>`_ for updates or errors to this blog post*
+---
+
+.. raw:: html
+
+    <script src="https://giscus.app/client.js"
+        data-repo="dawnwages/domain-driven-django"
+        data-repo-id="R_kgDOM1gXXA"
+        data-category="General"
+        data-category-id="DIC_kwDOM1gXXM4CisYw"
+        data-mapping="title"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+    </script>

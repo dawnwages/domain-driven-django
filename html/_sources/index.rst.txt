@@ -48,4 +48,20 @@ The timing for this book couldn't be better as I intend to use a few case studie
         crossorigin="anonymous"
         async>
    </script>
+
+   <form
+      action="https://buttondown.com/api/emails/embed-subscribe/ddd"
+      method="post"
+      target="popupwindow"
+      onsubmit="window.open('https://buttondown.com/ddd', 'popupwindow')"
+      class="embeddable-buttondown-form"
+         >
+      <label for="bd-email">Enter your email</label>
+      <input type="email" name="email" id="bd-email" />
+      
+      <input type="submit" value="Subscribe" />
+      <p>
+         <a href="https://buttondown.com/refer/ddd" target="_blank">Powered by Buttondown.</a>
+      </p>
+   </form>
    

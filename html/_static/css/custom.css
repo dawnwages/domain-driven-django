@@ -10,3 +10,7 @@
     content:'';
     background-image: background-image: url('/_static/header_building.svg');
 }
+
+.small {
+    font-size: 70%;
+}

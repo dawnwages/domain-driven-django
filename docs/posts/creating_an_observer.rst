@@ -1,0 +1,4 @@
+:orphan:
+
+Creating an Observer model in Django
+------------------------------------

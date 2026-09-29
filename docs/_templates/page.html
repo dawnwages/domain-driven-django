@@ -1,0 +1,28 @@
+{% extends "!page.html" %}
+{% block content %}
+{{ super() }}
+{%- if pagename not in ("search", "genindex") %}
+<section class="ddd-comments" aria-labelledby="ddd-comments-heading">
+  <h2 id="ddd-comments-heading">Join the conversation</h2>
+  <p>Comments are powered by GitHub Discussions. I'm writing this in the open, so questions and pushback are welcome.</p>
+  {#- "specific" mapping keeps the thread titles used by the previous theme. #}
+  <script src="https://giscus.app/client.js"
+    data-repo="dawnwages/domain-driven-django"
+    data-repo-id="R_kgDOM1gXXA"
+    data-category="General"
+    data-category-id="DIC_kwDOM1gXXM4CisYw"
+    data-mapping="specific"
+    data-term="Domain Driven Django :: {{ title|striptags|e }}"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+{%- endif %}
+{% endblock %}

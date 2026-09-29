@@ -1,0 +1,208 @@
+/* Domain Driven Django — brand layer on top of Furo.
+   Palette comes from the header illustration: purple, sky blue, lime. */
+
+:root {
+  --ddd-purple: #8a2fb3;
+  --ddd-blue: #5bc0e6;
+  --ddd-lime: #bcd35a;
+  --ddd-card: #f7f1fb;
+  --ddd-card-border: #e6d5f0;
+}
+
+body[data-theme="dark"] {
+  --ddd-card: #231a2a;
+  --ddd-card-border: #3d2c4a;
+}
+@media (prefers-color-scheme: dark) {
+  body:not([data-theme="light"]) {
+    --ddd-card: #231a2a;
+    --ddd-card-border: #3d2c4a;
+  }
+}
+
+/* Reading comfort */
+article[role="main"] {
+  font-size: 1.075rem;
+  line-height: 1.7;
+}
+.content {
+  max-width: 44em;
+}
+
+h1, h2, h3, h4, .sidebar-brand-text {
+  font-family: var(--font-stack--headings);
+  letter-spacing: -0.01em;
+}
+h1 {
+  font-weight: 800;
+  font-size: 2.4em;
+}
+h2 {
+  font-weight: 600;
+  margin-top: 2.2em;
+  padding-bottom: 0.25em;
+  border-bottom: 3px solid var(--ddd-lime);
+  display: inline-block;
+}
+
+/* Sidebar brand */
+.sidebar-brand-text {
+  font-weight: 800;
+  font-size: 1.3rem;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+.sidebar-brand-text::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 4px;
+  margin-top: 0.6rem;
+  background: linear-gradient(90deg, var(--ddd-purple) 0 33%, var(--ddd-blue) 33% 66%, var(--ddd-lime) 66%);
+  border-radius: 2px;
+}
+
+/* Home hero */
+.ddd-hero {
+  margin: 0 0 1.5rem;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--ddd-card-border);
+  overflow: hidden;
+}
+.ddd-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* First paragraph of each page reads as a lede */
+article[role="main"] > section > h1 + p,
+article[role="main"] > section > .ddd-hero + section > h1 + p {
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+/* Table of contents on the home page as cards */
+.toctree-wrapper > ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+.toctree-wrapper > ul > li {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background: var(--ddd-card);
+  border: 1px solid var(--ddd-card-border);
+  border-left: 5px solid var(--ddd-purple);
+  border-radius: 10px;
+}
+.toctree-wrapper > ul > li:nth-child(3n+2) { border-left-color: var(--ddd-blue); }
+.toctree-wrapper > ul > li:nth-child(3n) { border-left-color: var(--ddd-lime); }
+.toctree-wrapper > ul > li > a {
+  font-family: var(--font-stack--headings);
+  font-weight: 600;
+  font-size: 1.15em;
+  text-decoration: none;
+}
+.toctree-wrapper > ul > li > ul {
+  margin-top: 0.4rem;
+  font-size: 0.92em;
+}
+
+/* Admonitions */
+.admonition {
+  border-radius: 10px;
+}
+
+/* Author photo */
+img[alt^="Dawn Wages"] {
+  border-radius: 50%;
+  max-width: 220px;
+  height: auto;
+  float: right;
+  margin: 0 0 1rem 1.5rem;
+  border: 5px solid var(--ddd-lime);
+}
+@media (max-width: 40em) {
+  img[alt^="Dawn Wages"] {
+    float: none;
+    display: block;
+    margin: 0 auto 1.25rem;
+  }
+}
+
+/* Newsletter card in the left sidebar */
+.ddd-subscribe {
+  margin: 1.5rem var(--sidebar-item-spacing-horizontal) 1rem;
+  padding: 1rem;
+  background: var(--ddd-card);
+  border: 1px solid var(--ddd-card-border);
+  border-radius: 10px;
+  font-size: var(--sidebar-item-font-size);
+}
+.ddd-subscribe p { margin: 0; }
+.ddd-subscribe__eyebrow {
+  font-family: var(--font-stack--headings);
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+}
+.ddd-subscribe__title {
+  margin: 0.3rem 0 0.75rem !important;
+  line-height: 1.4;
+}
+.ddd-subscribe form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.ddd-subscribe input[type="email"] {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--color-foreground-border);
+  border-radius: 6px;
+  background: var(--color-background-primary);
+  color: var(--color-foreground-primary);
+  font: inherit;
+}
+.ddd-subscribe button {
+  padding: 0.5rem 0.6rem;
+  border: 0;
+  border-radius: 6px;
+  background: var(--ddd-purple);
+  color: #fff;
+  font-family: var(--font-stack--headings);
+  font-weight: 600;
+  cursor: pointer;
+}
+.ddd-subscribe button:hover { filter: brightness(1.1); }
+.ddd-subscribe__credit {
+  margin-top: 0.6rem !important;
+  font-size: 0.8em;
+}
+.ddd-subscribe__credit a { color: var(--color-foreground-muted); }
+
+/* Comments */
+.ddd-comments {
+  clear: both;
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-background-border);
+}
+.ddd-comments h2 { margin-top: 0; }
+
+.ddd-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 40em) {
+  h1 { font-size: 2em; }
+}

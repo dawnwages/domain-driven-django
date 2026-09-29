@@ -1,0 +1,8 @@
+:orphan:
+
+Managing Responsibility in Django
+---------------------------------
+- Bridge
+- Adaptor
+- Builder
+- Sender / Reciever

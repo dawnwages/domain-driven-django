@@ -1,7 +1,9 @@
 .. raw:: html
 
    <div class="ddd-hero">
-     <img src="_static/img/header_building_small.png"
+     <img class="only-light" src="_static/img/header_light.png"
+          alt="Domain-Driven Django: architecture patterns for Django web applications with Domain-Driven Design. Isometric illustration of a laptop, mouse, cutting mat and blueprints.">
+     <img class="only-dark" src="_static/img/header_dark.png"
           alt="Domain-Driven Django: architecture patterns for Django web applications with Domain-Driven Design. Isometric illustration of a laptop, mouse, cutting mat and blueprints.">
    </div>
 
